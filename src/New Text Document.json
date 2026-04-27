@@ -1,0 +1,10 @@
+{
+  "DESIGN_NAME": "tt_um_isalopez9_memory_game",
+  "VERILOG_FILES": [
+    "dir::project.v",
+    "dir::memory_game.v",
+    "dir::ram.v"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 1000
+}
