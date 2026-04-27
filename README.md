@@ -1,42 +1,54 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
+# Memory Game Digital Chip
 
-# Tiny Tapeout Verilog Project Template
+Este proyecto implementa un juego de memoria tipo **Simon Says** usando Verilog.
 
-- [Read the documentation for project](docs/info.md)
+El circuito utiliza una memoria RAM de 16 posiciones por 8 bits para guardar una secuencia. Luego, el sistema muestra la secuencia poco a poco mediante una salida de 2 bits llamada `led_out`. El jugador debe repetir la secuencia usando la entrada `player_input`.
 
-## What is Tiny Tapeout?
+## Archivos
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip.
+- `ram.v`: memoria RAM de 16x8 bits.
+- `memory_game.v`: módulo principal del juego.
+- `tb_memory_game.v`: testbench del proyecto.
 
-To learn more and get started, visit https://tinytapeout.com.
+## Entradas principales
 
-## Set up your Verilog project
+- `clk`: reloj del sistema.
+- `reset`: reinicia el juego.
+- `prog_mode`: permite programar la RAM.
+- `we`: habilita escritura en RAM.
+- `prog_addr`: dirección de memoria a escribir.
+- `prog_data`: dato que se guarda en memoria.
+- `start`: inicia el juego.
+- `player_input`: entrada del jugador.
+- `enter`: confirma la entrada del jugador.
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+## Salidas principales
 
-The GitHub action will automatically build the ASIC files using [LibreLane](https://www.zerotoasiccourse.com/terminology/librelane/).
+- `led_out`: salida que muestra la secuencia.
+- `show_valid`: indica que `led_out` está mostrando un dato válido.
+- `correct`: indica una respuesta correcta.
+- `error`: indica una respuesta incorrecta.
+- `win`: indica que el jugador completó la secuencia.
+- `level`: nivel actual del juego.
+- `state_out`: estado actual de la máquina de estados.
 
-## Enable GitHub actions to build the results page
+## Funcionamiento
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+1. Se programa la RAM con una secuencia de valores.
+2. Se inicia el juego con `start`.
+3. El sistema muestra la secuencia almacenada.
+4. El jugador repite la secuencia usando `player_input`.
+5. Si la entrada es correcta, el sistema aumenta el nivel.
+6. Si la entrada es incorrecta, se activa la señal `error`.
 
-## Resources
+## Idea general
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://www.tinytapeout.com/guides/local-hardening/)
+Este diseño combina:
 
-## What next?
+- Memoria RAM
+- Máquina de estados finitos
+- Comparador
+- Contador de posición
+- Control de niveles
 
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
+El objetivo es presentar un sistema digital sencillo, comprensible y apto para una implementación estudiantil en chip.
