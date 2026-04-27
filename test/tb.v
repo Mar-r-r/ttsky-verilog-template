@@ -1,19 +1,14 @@
 `default_nettype none
 `timescale 1ns / 1ps
 
-/* This testbench instantiates the user module and exposes wires
-   that can be driven and checked by cocotb test.py.
-*/
 module tb ();
 
-  // Dump the signals to a FST file.
   initial begin
     $dumpfile("tb.fst");
     $dumpvars(0, tb);
     #1;
   end
 
-  // Inputs and outputs
   reg clk;
   reg rst_n;
   reg ena;
@@ -28,14 +23,11 @@ module tb ();
   wire VGND = 1'b0;
 `endif
 
-  // User project module
   tt_um_isalopez9_memory_game user_project (
-
 `ifdef GL_TEST
       .VPWR(VPWR),
       .VGND(VGND),
 `endif
-
       .ui_in  (ui_in),
       .uo_out (uo_out),
       .uio_in (uio_in),

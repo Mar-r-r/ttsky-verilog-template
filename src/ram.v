@@ -1,9 +1,11 @@
+`default_nettype none
+
 module ram(
-    input clk,
-    input we,
-    input [3:0] addr,
-    input [7:0] data_in,
-    output [7:0] data_out
+    input wire clk,
+    input wire we,
+    input wire [3:0] addr,
+    input wire [7:0] data_in,
+    output wire [7:0] data_out
 );
 
     reg [7:0] ram_mem [0:15];
@@ -17,3 +19,5 @@ module ram(
     assign data_out = ram_mem[addr];
 
 endmodule
+
+`default_nettype wire
