@@ -11,14 +11,12 @@ project:
   tiles: "1x1"
 
   # Your top module name must start with "tt_um_".
-  top_module:  "tt_um_isalopez9_memory_game"
-  # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "project"
+  top_module: "tt_um_isalopez9_memory_game"
 
   # List your project's source files here.
-  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Source files must be in ./src and you must list each source file separately.
   source_files:
-    - "tt_um_memory_game.v"
+    - "project.v"
     - "memory_game.v"
     - "ram.v"
 
@@ -31,8 +29,8 @@ pinout:
   ui[3]: "enter"
   ui[4]: "player_input[0]"
   ui[5]: "player_input[1]"
-  ui[6]: ""
-  ui[7]: ""
+  ui[6]: "prog_data[0]"
+  ui[7]: "prog_data[1]"
 
   # Outputs
   uo[0]: "led_out[0]"
@@ -41,18 +39,18 @@ pinout:
   uo[3]: "correct"
   uo[4]: "error"
   uo[5]: "win"
-  uo[6]: "state_out[0]"
-  uo[7]: "state_out[1]"
+  uo[6]: "level[0]"
+  uo[7]: "level[1]"
 
   # Bidirectional pins
-  uio[0]: "prog_data[0] / prog_addr[0] / level[0]"
-  uio[1]: "prog_data[1] / prog_addr[1] / level[1]"
-  uio[2]: "prog_data[2] / prog_addr[2] / level[2]"
-  uio[3]: "prog_data[3] / prog_addr[3] / level[3]"
-  uio[4]: "prog_data[4] / level[4]"
-  uio[5]: "prog_data[5]"
-  uio[6]: "prog_data[6]"
-  uio[7]: "prog_data[7]"
+  uio[0]: "prog_addr[0]"
+  uio[1]: "prog_addr[1]"
+  uio[2]: "prog_addr[2]"
+  uio[3]: "prog_addr[3]"
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
 
 # Do not change!
 yaml_version: 6

@@ -5,6 +5,7 @@ module tt_um_isalopez9_memory_game (
     inout wire VPWR,
     inout wire VGND,
 `endif
+
     input  wire [7:0] ui_in,
     output wire [7:0] uo_out,
     input  wire [7:0] uio_in,
@@ -37,8 +38,11 @@ module tt_um_isalopez9_memory_game (
     assign enter        = ui_in[3];
     assign player_input = ui_in[5:4];
 
+    // uio_in[3:0] controla la direccion de memoria
     assign prog_addr = uio_in[3:0];
-    assign prog_data = {6'b000000, uio_in[1:0]};
+
+    // ui_in[7:6] controla el dato que se guarda en RAM
+    assign prog_data = {6'b000000, ui_in[7:6]};
 
     memory_game game_inst (
         .clk(clk),
@@ -66,12 +70,16 @@ module tt_um_isalopez9_memory_game (
     assign uo_out[5]   = win;
     assign uo_out[7:6] = level[1:0];
 
+    // Todos los pines bidireccionales quedan como entradas
     assign uio_out = 8'b00000000;
     assign uio_oe  = 8'b00000000;
 
+    // Senales no usadas para evitar warnings
     wire unused;
-    assign unused = ena | ui_in[6] | ui_in[7] | uio_in[4] | uio_in[5] | uio_in[6] | uio_in[7] |
-                    level[2] | level[3] | level[4] | state_out[0] | state_out[1] | state_out[2];
+    assign unused = ena |
+                    state_out[0] | state_out[1] | state_out[2] |
+                    level[2] | level[3] | level[4] |
+                    uio_in[4] | uio_in[5] | uio_in[6] | uio_in[7];
 
 endmodule
 
